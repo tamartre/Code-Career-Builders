@@ -15,10 +15,6 @@ ws.onmessage = (event) => {
                 usersList.appendChild(userElement);
             });
         }
-
-        // Update the UI with the highest bid and bidder
-        highestBidElement.textContent = `${data.highestBid}`;
-        highestBidderElement.textContent = data.highestBidder;
         errorMessage.textContent = ''; // Clear any previous error messages
     });
 };

@@ -1,11 +1,14 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
+    <link rel="icon" href="data:;base64,iVBORw0KGgo=">
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>User List</title>
 </head>
+
 <body>
     <h1>User List</h1>
     <ul id="user-list"></ul>
@@ -15,16 +18,22 @@
 
         const ws = new WebSocket('ws://localhost:3000');
 
-        ws.onmessage = function(event) {
+        ws.onmessage = function (event) {
             const data = JSON.parse(event.data);
-            userList.innerHTML = '';
-
-            data.users.forEach(user => {
-                const listItem = document.createElement('li');
-                listItem.textContent = `${user.name} - ${user.initials}`;
-                userList.appendChild(listItem);
-            });
+            // userList.innerHTML = '';
+            console.log("data", data);
+            
+            if (data.users) {
+                data.users.forEach(user => {
+                    const listItem = document.createElement('li');
+                    listItem.textContent = `${user.name} - ${user.initials}`;
+                    userList.appendChild(listItem);
+                });
+            } else {
+                console.error('Invalid user data format');
+            }
         };
     </script>
 </body>
+
 </html>

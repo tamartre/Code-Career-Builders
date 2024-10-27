@@ -28,6 +28,7 @@ function broadcastUserUpdate() {
 }
 
 wss.on('connection', (ws) => {
+    console.log('New client connected');
     ws.on('message', (message) => {
         try {
             const { name, initials } = JSON.parse(message);
